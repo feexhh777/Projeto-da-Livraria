@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js" defer></script>
+
+</head>
+
+<body class="h-screen flex items-center justify-center bg-gray-200 overflow-hidden font-sans">
+
+    <div class="absolute top-5 left-5">
+        <img src="logoprincipal.png" class="w-28">
+    </div>
+
+    <div class="w-[500px] h-[700px] bg-white p-10 rounded-[25px] shadow-xl">
+
+        <div class="w-[100px] h-[100px] bg-indigo-200 rounded-full mx-auto mb-5 flex items-center justify-center text-[40px]">
+            🧑‍🎓
+        </div>
+
+        <h1 class="text-center text-[75px] font-bold text-slate-900 mb-2">
+            Login
+        </h1>
+
+        <p class="text-center text-slate-500 text-lg mb-10">
+            Faça login para continuar com sua leitura!
+        </p>
+
+        <form id="loginform">
+
+            <div class="mb-3">
+
+                <label class="block mb-2 text-[20px] font-bold text-slate-900">
+                    Usuário
+                </label>
+
+                <input 
+                    type="text"
+                    id="usuario"
+                    placeholder="Digite seu usuário"
+
+                    class="
+                    w-full
+                    h-[60px]
+                    border
+                    border-slate-300
+                    rounded-2x1
+                    pl-5
+                    text-l
+                    transition
+                    focus:outline-none
+                    focus:border-blue-600
+                    focus:shadow-lg
+                    "
+                >
+
+            </div>
+
+            <div class="mb-12">
+
+                <label class="block mb-2 text-[20px] font-bold text-slate-900">
+                    Senha
+                </label>
+
+                <input 
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+
+                    class="
+                    w-full
+                    h-[60px]
+                    border
+                    border-slate-300
+                    rounded-2xl
+                    pl-5
+                    text-lg
+                    transition
+                    focus:outline-none
+                    focus:border-blue-600
+                    focus:shadow-lg
+                    "
+                >
+
+            </div>
+
+            <button
+            type="submit"
+                class="
+                w-full
+                h-[60px]
+                rounded-2xl
+                bg-gradient-to-r
+                from-blue-600
+                to-blue-700
+                text-white
+                text-[22px]
+                font-bold
+                transition
+                hover:scale-[1.02]
+                "
+            >
+                Entrar
+            </button>
+
+        </form>
+
+        <div class="text-center mt-12 text-slate-900">
+            © 2026 LEArning
+        </div>
+
+    </div>
+
+</body>
+</html>
