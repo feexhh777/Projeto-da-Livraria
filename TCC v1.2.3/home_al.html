@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEArning</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-slate-50 min-h-screen font-sans">
+
+<!-- Topo azul -->
+<header class="bg-gradient-to-b from-blue-700 to-blue-600 rounded-b-[40px] p-6 text-white">
+
+<div class="flex justify-between items-center">
+    <div>
+        <h1 class="text-xl font-bold">Olá, Usuário! 👋</h1>
+        <p class="text-sm opacity-80">Bem-vindo à sua Biblioteca Virtual</p>
+    </div>
+
+    <div class="text-2xl">🔔</div>
+</div>
+
+
+<!-- Pesquisa -->
+<div class="mt-6 bg-white rounded-full p-3 flex items-center text-gray-400 shadow">
+
+<span>🔍</span>
+<input 
+class="ml-3 outline-none w-full"
+placeholder="Buscar livros, autores ou categorias..."
+>
+
+</div>
+
+</header>
+
+
+
+<main class="p-5 -mt-2">
+
+
+<!-- destaque -->
+
+<section class="bg-gradient-to-r from-slate-900 to-blue-900 rounded-3xl p-5 text-white mt-4 shadow-xl">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<p class="text-sm text-blue-300">
+Em destaque
+</p>
+
+<h2 class="text-3xl font-bold">
+1984
+</h2>
+
+<p class="text-sm">
+George Orwell
+</p>
+
+
+<button 
+onclick="window.location.href='livros.html'"
+class="mt-5 bg-white text-blue-700 px-5 py-2 rounded-xl font-bold">
+
+VER AGORA
+
+</button>
+
+</div>
+
+
+<div class="w-24 h-36 bg-black rounded-lg flex items-center justify-center shadow">
+
+<span class="text-red-600 text-2xl font-bold">
+1984
+</span>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- categorias -->
+
+<div class="flex justify-between mt-8">
+
+<h2 class="font-bold text-lg">
+Categorias
+</h2>
+
+<a class="text-blue-600 text-sm">
+Ver todas
+</a>
+
+</div>
+
+
+
+<div class="grid grid-cols-4 gap-3 mt-4">
+
+
+<div class="bg-blue-50 rounded-2xl p-4 text-center">
+<div class="text-2xl">📖</div>
+<p class="text-xs">Romance</p>
+</div>
+
+
+<div class="bg-green-50 rounded-2xl p-4 text-center">
+<div class="text-2xl">🏛️</div>
+<p class="text-xs">História</p>
+</div>
+
+
+<div class="bg-purple-50 rounded-2xl p-4 text-center">
+<div class="text-2xl">💡</div>
+<p class="text-xs">Desenvolvimento</p>
+</div>
+
+
+<div class="bg-yellow-50 rounded-2xl p-4 text-center">
+<div class="text-2xl">🌳</div>
+<p class="text-xs">Natureza</p>
+</div>
+
+
+</div>
+
+
+
+
+<!-- continuar lendo -->
+
+<div class="flex justify-between mt-8">
+
+<h2 class="font-bold text-lg">
+Continuar Lendo
+</h2>
+
+<a class="text-blue-600 text-sm">
+Ver todos
+</a>
+
+</div>
+
+
+
+<div class="bg-white rounded-2xl shadow p-4 mt-3 flex gap-4">
+
+
+<div class="w-16 h-24 bg-yellow-400 rounded">
+
+</div>
+
+
+<div class="flex-1">
+
+<h3 class="font-bold">
+
+    
+</h3>
+
+<p class="text-sm text-gray-400">
+Charles Duhigg
+</p>
+
+
+<div class="mt-5 bg-gray-200 h-2 rounded">
+
+<div class="bg-blue-600 h-2 rounded w-2/3"></div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+
+<!-- menu inferior -->
+
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-around">
+
+<button class="border border-red" ><a>🏠<br><small>Home</small></a></button>
+
+
+<a onclick="window.location.href='livros.html'">
+📚<br><small>Livros</small>
+</a>
+
+
+<button class="bg-blue-600 text-white w-14 h-14 rounded-full -mt-10 text-3xl">
++
+</button>
+
+
+<button onclick="window.location.href='cad_alunos.html'">👥<br><small>alunos</small></button>
+
+<a>👤<br><small>Perfil</small></a>
+
+
+</nav>
+
+
+</body>
+</html>
