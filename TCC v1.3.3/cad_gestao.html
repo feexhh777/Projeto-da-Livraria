@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Cadastro de Gestão</title>
+</head>
+
+<body>
+
+    <form id="formcad">
+
+        <input
+            class="border rounded text-black"
+            type="text"
+            id="nome"
+            placeholder="NOME"
+        >
+
+        <br><br>
+
+
+        <input
+            class="border rounded text-black"
+            type="text"
+            id="cpf"
+            placeholder="cpf"
+        >
+
+        <br><br>
+
+
+        <input
+            class="border rounded text-black"
+            type="password"
+            id="senha"
+            placeholder="senha"
+        >
+
+        <br><br>
+
+
+        <button
+            type="submit"
+            id="mensagem"
+            class="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+            Cadastrar
+        </button>
+
+
+    </form>
+
+
+    <h3 id="mensagem"></h3>
+
+
+    <button
+        class="bg-orange-300 text-black font-bold py-2 px-3 rounded border border-black"
+        onclick="window.location.href='home.html'">
+
+        Voltar para Home
+
+    </button>
+
+
+    <script src="cad_gestao.js"></script>
+
+</body>
+
+</html>

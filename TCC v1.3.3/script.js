@@ -1,0 +1,32 @@
+console.log("js carregando")
+document.getElementById("loginform").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    // validação simples
+    if(usuario === "" || senha === ""){
+
+        alert("Preencha todos os campos!");
+        return;
+
+    }
+
+    // login
+    if(usuario === "admin" && senha === "1234"){
+
+        // salva usuário logado
+        localStorage.setItem("usuario", usuario);
+
+        // vai para home
+        window.location.href = "home.html";
+
+    }else{
+
+        alert("Usuário ou senha incorretos!");
+
+    }
+
+});
