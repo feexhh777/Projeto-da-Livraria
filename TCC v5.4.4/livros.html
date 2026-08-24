@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Livros - LEArning</title>
+
+</head>
+
+
+<body class="bg-slate-100 min-h-screen font-sans">
+
+
+    <!-- CABEÇALHO -->
+
+    <header class="bg-gradient-to-b from-blue-700 to-blue-600
+    text-white rounded-b-[40px] p-6">
+
+        <h1 class="text-2xl font-bold">
+            📚 Biblioteca
+        </h1>
+
+        <p class="text-sm opacity-80">
+            Consulte nosso acervo
+        </p>
+
+
+        <!-- PESQUISA -->
+
+        <div class="mt-6 bg-white rounded-full p-3
+        flex items-center shadow">
+
+            <span class="text-gray-400">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="pesquisa"
+                placeholder="Buscar livro, autor ou gênero..."
+                class="ml-3 outline-none w-full text-black"
+            >
+
+        </div>
+
+    </header>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="p-5 max-w-6xl mx-auto">
+
+
+        <div class="flex justify-between items-center mb-5">
+
+            <h2 class="text-xl font-bold text-slate-900">
+                Livros
+            </h2>
+
+            <span
+                id="contador"
+                class="text-sm text-slate-500">
+            </span>
+
+        </div>
+
+
+        <!-- MENSAGEM -->
+
+        <div
+            id="mensagem"
+            class="text-center text-slate-500 py-10">
+
+            Carregando livros...
+
+        </div>
+
+
+        <!-- LISTA -->
+
+        <div
+            id="listaLivros"
+            class="grid grid-cols-1 sm:grid-cols-2
+            lg:grid-cols-3 gap-5">
+        </div>
+
+
+    </main>
+
+
+
+    <!-- VOLTAR -->
+
+    <div class="text-center pb-10">
+
+        <button
+            onclick="window.location.href='home.html'"
+            class="bg-orange-300 hover:bg-orange-400
+            text-black font-bold py-3 px-6 rounded-xl
+            border border-black">
+
+            Voltar para Home
+
+        </button>
+
+    </div>
+
+
+
+<script>
+
+
+console.log("livros.html carregado");
+
+
+// ==========================================================
+// BUSCAR LIVROS
+// ==========================================================
+
+async function buscarLivros() {
+
+    const pesquisa =
+        document.getElementById("pesquisa").value.trim();
+
+
+    const lista =
+        document.getElementById("listaLivros");
+
+
+    const mensagem =
+        document.getElementById("mensagem");
+
+
+    const contador =
+        document.getElementById("contador");
+
+
+    lista.innerHTML = "";
+
+    mensagem.textContent = "Buscando livros...";
+
+
+    try {
+
+
+        let url =
+            "http://127.0.0.1:5000/livros";
+
+
+        // Se existir pesquisa,
+        // envia a pesquisa para o Flask
+
+        if (pesquisa !== "") {
+
+            url += "?busca=" +
+                encodeURIComponent(pesquisa);
+
+        }
+
+
+        const resposta =
+            await fetch(url);
+
+
+        const dados =
+            await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                dados.mensagem ||
+                "Erro ao buscar livros."
+            );
+
+        }
+
+
+        const livros =
+            dados.livros;
+
+
+        contador.textContent =
+            livros.length + " encontrado(s)";
+
+
+        if (livros.length === 0) {
+
+            mensagem.textContent =
+                "Nenhum livro encontrado.";
+
+            return;
+
+        }
+
+
+        mensagem.textContent = "";
+
+
+        // ==================================================
+        // CRIAR OS CARDS
+        // ==================================================
+
+        livros.forEach(function(livro) {
+
+
+            const disponivel =
+                livro.Disponivel === "SIM";
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "bg-white rounded-2xl shadow-md p-5";
+
+
+            card.innerHTML = `
+
+                <div class="flex justify-between
+                items-start mb-4">
+
+                    <div class="text-4xl">
+                        📖
+                    </div>
+
+                    <span class="
+                        ${disponivel
+                            ? "bg-green-100 text-green-700"
+                            : "bg-red-100 text-red-700"}
+                        px-3 py-1 rounded-full
+                        text-xs font-bold
+                    ">
+
+                        ${disponivel
+                            ? "🟢 Disponível"
+                            : "🔴 Indisponível"}
+
+                    </span>
+
+                </div>
+
+
+                <h3 class="text-xl font-bold
+                text-slate-900 mb-3">
+
+                    ${livro.titulo}
+
+                </h3>
+
+
+                <p class="text-slate-600 mb-1">
+
+                    <strong>Autor:</strong>
+                    ${livro.autor_livro}
+
+                </p>
+
+
+                <p class="text-slate-600 mb-1">
+
+                    <strong>Editora:</strong>
+                    ${livro.editora || "Não informado"}
+
+                </p>
+
+
+                <p class="text-slate-600 mb-1">
+
+                    <strong>Gênero:</strong>
+                    ${livro.Genero}
+
+                </p>
+
+
+                <p class="text-slate-600 mb-1">
+
+                    <strong>Ano:</strong>
+                    ${livro.ANO || "Não informado"}
+
+                </p>
+
+
+                <p class="text-slate-600">
+
+                    <strong>Exemplares:</strong>
+                    ${livro.quantidade}
+
+                </p>
+
+            `;
+
+
+            lista.appendChild(card);
+
+        });
+
+
+    } catch (erro) {
+
+        console.error("Erro:", erro);
+
+
+        mensagem.textContent =
+            "Erro ao conectar com o Flask.";
+
+    }
+
+}
+
+
+
+// ==========================================================
+// PESQUISA
+// ==========================================================
+
+let tempoPesquisa;
+
+
+document
+    .getElementById("pesquisa")
+    .addEventListener("input", function() {
+
+
+        clearTimeout(tempoPesquisa);
+
+
+        tempoPesquisa =
+            setTimeout(function() {
+
+                buscarLivros();
+
+            }, 300);
+
+    });
+
+
+
+// ==========================================================
+// CARREGAR AO ABRIR
+// ==========================================================
+
+buscarLivros();
+
+
+</script>
+
+
+</body>
+
+</html>

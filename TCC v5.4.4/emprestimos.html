@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <script src="protecao_adm.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Empréstimos - LEArning</title>
+
+</head>
+
+
+<body class="bg-slate-100 min-h-screen font-sans">
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header
+        class="bg-gradient-to-b from-blue-700 to-blue-600
+        text-white rounded-b-[40px] p-6">
+
+        <h1 class="text-2xl font-bold">
+            📚 Empréstimos
+        </h1>
+
+        <p class="text-sm opacity-80">
+            Registre, localize e devolva livros
+        </p>
+
+    </header>
+
+
+
+    <main class="max-w-4xl mx-auto p-5">
+
+
+        <!-- =================================================
+             NOVO EMPRÉSTIMO
+        ================================================== -->
+
+        <section
+            class="bg-white rounded-2xl shadow-md p-6 mb-8">
+
+            <h2
+                class="text-2xl font-bold text-slate-900 mb-2">
+
+                Novo empréstimo
+
+            </h2>
+
+            <p class="text-slate-500 mb-6">
+
+                Informe os dados do aluno e selecione o livro.
+
+            </p>
+
+
+            <form id="formEmprestimo">
+
+
+                <!-- NOME -->
+
+                <div class="mb-5">
+
+                    <label
+                        for="nomeAluno"
+                        class="block mb-2 font-bold text-slate-900">
+
+                        Nome do aluno
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nomeAluno"
+                        placeholder="Digite o nome completo"
+                        class="w-full border border-slate-300
+                        rounded-xl p-3
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                </div>
+
+
+
+                <!-- SALA -->
+
+                <div class="mb-5">
+
+                    <label
+                        for="sala"
+                        class="block mb-2 font-bold text-slate-900">
+
+                        Sala
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sala"
+                        placeholder="Ex: 2B"
+                        class="w-full border border-slate-300
+                        rounded-xl p-3
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                </div>
+
+
+
+                <!-- ANO -->
+
+                <div class="mb-5">
+
+                    <label
+                        for="anoAluno"
+                        class="block mb-2 font-bold text-slate-900">
+
+                        Ano
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="anoAluno"
+                        placeholder="Ex: 2º ano"
+                        class="w-full border border-slate-300
+                        rounded-xl p-3
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                </div>
+
+
+
+                <!-- LIVRO -->
+
+                <div class="mb-7">
+
+                    <label
+                        for="livro"
+                        class="block mb-2 font-bold text-slate-900">
+
+                        Livro
+
+                    </label>
+
+                    <select
+                        id="livro"
+                        class="w-full border border-slate-300
+                        rounded-xl p-3 bg-white
+                        focus:outline-none
+                        focus:border-blue-600">
+
+                        <option value="">
+                            Carregando livros...
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    id="botaoEmprestimo"
+                    class="w-full bg-blue-600
+                    hover:bg-blue-700
+                    text-white font-bold
+                    py-3 rounded-xl">
+
+                    Registrar empréstimo
+
+                </button>
+
+
+            </form>
+
+
+            <p
+                id="mensagemEmprestimo"
+                class="text-center font-bold mt-5">
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EMPRÉSTIMOS ATUAIS
+        ================================================== -->
+
+        <section
+            class="bg-white rounded-2xl shadow-md p-6">
+
+            <h2
+                class="text-2xl font-bold text-slate-900 mb-2">
+
+                🔎 Livros emprestados
+
+            </h2>
+
+            <p class="text-slate-500 mb-5">
+
+                Pesquise pelo nome do aluno ou pelo livro.
+
+            </p>
+
+
+            <!-- PESQUISA -->
+
+            <input
+                type="text"
+                id="pesquisaEmprestimo"
+                placeholder="Digite o nome do aluno ou livro..."
+                class="w-full border border-slate-300
+                rounded-xl p-3
+                focus:outline-none
+                focus:border-blue-600"
+            >
+
+
+            <!-- LISTA -->
+
+            <div
+                id="listaEmprestimos"
+                class="mt-6">
+
+                <p
+                    class="text-center text-slate-500">
+
+                    Carregando empréstimos...
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         VOLTAR
+    ====================================================== -->
+
+    <div class="text-center pb-10">
+
+        <button
+            onclick="window.location.href='home.html'"
+            class="bg-orange-300 hover:bg-orange-400
+            text-black font-bold
+            py-3 px-6 rounded-xl
+            border border-black">
+
+            Voltar para Home
+
+        </button>
+
+    </div>
+
+
+
+<script>
+
+
+console.log("emprestimos.html carregado");
+
+
+// ==========================================================
+// CARREGAR LIVROS DISPONÍVEIS
+// ==========================================================
+
+async function carregarLivros() {
+
+    const select =
+        document.getElementById("livro");
+
+
+    try {
+
+        const resposta =
+            await fetch(
+                "http://127.0.0.1:5000/livros"
+            );
+
+
+        const dados =
+            await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                dados.mensagem ||
+                "Erro ao carregar livros."
+            );
+
+        }
+
+
+        select.innerHTML = "";
+
+
+        const opcaoInicial =
+            document.createElement("option");
+
+
+        opcaoInicial.value = "";
+
+        opcaoInicial.textContent =
+            "Selecione um livro";
+
+
+        select.appendChild(opcaoInicial);
+
+
+        dados.livros.forEach(function(livro) {
+
+
+            if (
+                livro.Disponivel === "SIM" &&
+                livro.quantidade > 0
+            ) {
+
+                const opcao =
+                    document.createElement("option");
+
+
+                opcao.value =
+                    livro.id_livro;
+
+
+                opcao.textContent =
+                    livro.titulo +
+                    " - " +
+                    livro.autor_livro +
+                    " (" +
+                    livro.quantidade +
+                    " disponível(is))";
+
+
+                select.appendChild(opcao);
+
+            }
+
+        });
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar livros:",
+            erro
+        );
+
+
+        select.innerHTML = "";
+
+
+        const opcao =
+            document.createElement("option");
+
+
+        opcao.value = "";
+
+        opcao.textContent =
+            "Erro ao carregar livros";
+
+
+        select.appendChild(opcao);
+
+    }
+
+}
+
+
+
+// ==========================================================
+// REGISTRAR EMPRÉSTIMO
+// ==========================================================
+
+document
+    .getElementById("formEmprestimo")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const nomeAluno =
+                document
+                    .getElementById("nomeAluno")
+                    .value
+                    .trim();
+
+
+            const sala =
+                document
+                    .getElementById("sala")
+                    .value
+                    .trim();
+
+
+            const ano =
+                document
+                    .getElementById("anoAluno")
+                    .value
+                    .trim();
+
+
+            const livro =
+                document
+                    .getElementById("livro")
+                    .value;
+
+
+            const mensagem =
+                document.getElementById(
+                    "mensagemEmprestimo"
+                );
+
+
+            const botao =
+                document.getElementById(
+                    "botaoEmprestimo"
+                );
+
+
+            if (
+                nomeAluno === "" ||
+                sala === "" ||
+                ano === "" ||
+                livro === ""
+            ) {
+
+                mensagem.textContent =
+                    "Preencha todos os campos.";
+
+                mensagem.className =
+                    "text-center font-bold mt-5 text-red-600";
+
+                return;
+
+            }
+
+
+            botao.disabled = true;
+
+            botao.textContent =
+                "Registrando...";
+
+
+            try {
+
+                const resposta =
+                    await fetch(
+                        "http://127.0.0.1:5000/emprestimos",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                nome_aluno:
+                                    nomeAluno,
+
+                                sala:
+                                    sala,
+
+                                ano:
+                                    ano,
+
+                                id_livro:
+                                    livro
+
+                            })
+
+                        }
+                    );
+
+
+                const dados =
+                    await resposta.json();
+
+
+                if (!resposta.ok) {
+
+                    throw new Error(
+                        dados.mensagem ||
+                        "Erro ao registrar empréstimo."
+                    );
+
+                }
+
+
+                mensagem.textContent =
+                    dados.mensagem;
+
+
+                mensagem.className =
+                    "text-center font-bold mt-5 text-green-600";
+
+
+                document
+                    .getElementById(
+                        "formEmprestimo"
+                    )
+                    .reset();
+
+
+                botao.textContent =
+                    "✓ Empréstimo registrado";
+
+
+                botao.classList.remove(
+                    "bg-blue-600"
+                );
+
+
+                botao.classList.add(
+                    "bg-green-600"
+                );
+
+
+                carregarLivros();
+
+                carregarEmprestimos();
+
+
+                setTimeout(function() {
+
+                    botao.disabled = false;
+
+                    botao.textContent =
+                        "Registrar empréstimo";
+
+
+                    botao.classList.remove(
+                        "bg-green-600"
+                    );
+
+
+                    botao.classList.add(
+                        "bg-blue-600"
+                    );
+
+                }, 2000);
+
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro:",
+                    erro
+                );
+
+
+                mensagem.textContent =
+                    erro.message;
+
+
+                mensagem.className =
+                    "text-center font-bold mt-5 text-red-600";
+
+
+                botao.disabled = false;
+
+                botao.textContent =
+                    "Registrar empréstimo";
+
+            }
+
+        }
+    );
+
+
+
+// ==========================================================
+// CARREGAR EMPRÉSTIMOS
+// ==========================================================
+
+async function carregarEmprestimos() {
+
+    const pesquisa =
+        document
+            .getElementById(
+                "pesquisaEmprestimo"
+            )
+            .value
+            .trim();
+
+
+    const lista =
+        document.getElementById(
+            "listaEmprestimos"
+        );
+
+
+    try {
+
+        let url =
+            "http://127.0.0.1:5000/emprestimos";
+
+
+        if (pesquisa !== "") {
+
+            url +=
+                "?busca=" +
+                encodeURIComponent(pesquisa);
+
+        }
+
+
+        const resposta =
+            await fetch(url);
+
+
+        const dados =
+            await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                dados.mensagem ||
+                "Erro ao buscar empréstimos."
+            );
+
+        }
+
+
+        lista.innerHTML = "";
+
+
+        if (
+            dados.emprestimos.length === 0
+        ) {
+
+            lista.innerHTML = `
+
+                <p class="text-center
+                text-slate-500 py-5">
+
+                    Nenhum empréstimo encontrado.
+
+                </p>
+
+            `;
+
+            return;
+
+        }
+
+
+        dados.emprestimos.forEach(
+            function(emprestimo) {
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "border border-slate-200 " +
+                    "rounded-xl p-5 mb-4";
+
+
+                card.innerHTML = `
+
+                    <div class="flex
+                    justify-between
+                    items-start
+                    gap-4">
+
+                        <div>
+
+                            <h3 class="text-lg
+                            font-bold text-slate-900">
+
+                                📖
+                                ${emprestimo.titulo}
+
+                            </h3>
+
+
+                            <p class="text-slate-600 mt-2">
+
+                                👤
+                                <strong>Aluno:</strong>
+                                ${emprestimo.nome_aluno}
+
+                            </p>
+
+
+                            <p class="text-slate-600">
+
+                                🏫
+                                <strong>Sala:</strong>
+                                ${emprestimo.sala}
+
+                            </p>
+
+
+                            <p class="text-slate-600">
+
+                                🎓
+                                <strong>Ano:</strong>
+                                ${emprestimo.ano}
+
+                            </p>
+
+
+                            <p class="text-slate-600">
+
+                                📅
+                                <strong>Empréstimo:</strong>
+                                ${emprestimo.data_emprestimo}
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="flex
+                        flex-col gap-2
+                        items-end">
+
+
+                            <span class="
+                            bg-orange-100
+                            text-orange-700
+                            px-3 py-1
+                            rounded-full
+                            text-xs
+                            font-bold">
+
+                                EMPRESTADO
+
+                            </span>
+
+
+                            <button
+                                onclick="devolverLivro(
+                                    ${emprestimo.id_emprestimo}
+                                )"
+                                class="
+                                bg-green-600
+                                hover:bg-green-700
+                                text-white
+                                font-bold
+                                px-4 py-2
+                                rounded-xl">
+
+                                ✓ Devolver
+
+                            </button>
+
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                lista.appendChild(card);
+
+            }
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro:",
+            erro
+        );
+
+
+        lista.innerHTML = `
+
+            <p class="text-center
+            text-red-600 py-5">
+
+                Erro ao carregar empréstimos.
+
+            </p>
+
+        `;
+
+    }
+
+}
+
+
+
+// ==========================================================
+// DEVOLVER LIVRO
+// ==========================================================
+
+async function devolverLivro(
+    idEmprestimo
+) {
+
+
+    const confirmar =
+        confirm(
+            "Confirmar devolução deste livro?"
+        );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        const resposta =
+            await fetch(
+                "http://127.0.0.1:5000/emprestimos/" +
+                idEmprestimo +
+                "/devolver",
+                {
+
+                    method: "PUT"
+
+                }
+            );
+
+
+        const dados =
+            await resposta.json();
+
+
+        if (!resposta.ok) {
+
+            throw new Error(
+                dados.mensagem ||
+                "Erro ao devolver livro."
+            );
+
+        }
+
+
+        alert(
+            dados.mensagem
+        );
+
+
+        // Atualiza os livros disponíveis
+
+        carregarLivros();
+
+
+        // Atualiza a lista de empréstimos
+
+        carregarEmprestimos();
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro na devolução:",
+            erro
+        );
+
+
+        alert(
+            erro.message
+        );
+
+    }
+
+}
+
+
+
+// ==========================================================
+// PESQUISA
+// ==========================================================
+
+let tempoPesquisaEmprestimo;
+
+
+document
+    .getElementById(
+        "pesquisaEmprestimo"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+
+            clearTimeout(
+                tempoPesquisaEmprestimo
+            );
+
+
+            tempoPesquisaEmprestimo =
+                setTimeout(
+                    function() {
+
+                        carregarEmprestimos();
+
+                    },
+                    300
+                );
+
+        }
+    );
+
+
+
+// ==========================================================
+// INICIAR
+// ==========================================================
+
+carregarLivros();
+
+carregarEmprestimos();
+
+
+</script>
+
+
+</body>
+
+</html>

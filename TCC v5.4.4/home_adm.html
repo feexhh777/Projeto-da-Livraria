@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <script src="protecao_adm.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Área Administrativa - LEArning</title>
+
+</head>
+
+
+<body class="bg-slate-100 min-h-screen font-sans">
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header
+        class="bg-gradient-to-b from-blue-700 to-blue-600
+        text-white rounded-b-[40px] p-6 shadow-lg">
+
+        <div class="flex justify-between items-center">
+
+            <div>
+
+                <p class="text-sm opacity-80">
+                    LEArning
+                </p>
+
+                <h1 class="text-2xl font-bold">
+                    Área Administrativa 🔐
+                </h1>
+
+                <p class="text-sm opacity-80 mt-1">
+                    Gerencie a biblioteca
+                </p>
+
+            </div>
+
+
+            <div class="text-4xl">
+                📚
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <main class="max-w-5xl mx-auto p-5">
+
+
+        <!-- SAUDAÇÃO -->
+
+        <section
+            class="bg-white rounded-2xl shadow-md p-6 mb-6">
+
+            <p class="text-sm text-blue-600 font-bold">
+                PAINEL ADMINISTRATIVO
+            </p>
+
+            <h2
+                class="text-2xl font-bold text-slate-900 mt-1">
+
+                Olá, Administrador! 👋
+
+            </h2>
+
+            <p class="text-slate-500 mt-2">
+
+                Selecione uma opção para gerenciar o sistema
+                da biblioteca.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             OPÇÕES ADMINISTRATIVAS
+        ================================================== -->
+
+        <section>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-2
+                gap-5">
+
+
+                <!-- CADASTRO DE LIVROS -->
+
+                <button
+                    onclick="window.location.href='cad_livros.html'"
+                    class="bg-white rounded-2xl shadow-md
+                    p-6 text-left
+                    border-2 border-transparent
+                    hover:border-blue-500
+                    hover:shadow-lg
+                    transition">
+
+                    <div
+                        class="w-14 h-14 bg-blue-100
+                        rounded-2xl flex items-center
+                        justify-center text-3xl mb-4">
+
+                        📚
+
+                    </div>
+
+
+                    <h3
+                        class="text-xl font-bold
+                        text-slate-900">
+
+                        Cadastro de livros
+
+                    </h3>
+
+
+                    <p
+                        class="text-slate-500 mt-2">
+
+                        Adicione novos livros ao acervo
+                        da biblioteca.
+
+                    </p>
+
+                </button>
+
+
+
+                <!-- EMPRÉSTIMOS -->
+
+                <button
+                    onclick="window.location.href='emprestimos.html'"
+                    class="bg-white rounded-2xl shadow-md
+                    p-6 text-left
+                    border-2 border-transparent
+                    hover:border-orange-500
+                    hover:shadow-lg
+                    transition">
+
+                    <div
+                        class="w-14 h-14 bg-orange-100
+                        rounded-2xl flex items-center
+                        justify-center text-3xl mb-4">
+
+                        🔄
+
+                    </div>
+
+
+                    <h3
+                        class="text-xl font-bold
+                        text-slate-900">
+
+                        Empréstimos
+
+                    </h3>
+
+
+                    <p
+                        class="text-slate-500 mt-2">
+
+                        Registre empréstimos e devoluções
+                        de livros.
+
+                    </p>
+
+                </button>
+
+
+
+                <!-- CADASTRO DE GESTÃO -->
+
+                <button
+                    onclick="window.location.href='cad_gestao.html'"
+                    class="bg-white rounded-2xl shadow-md
+                    p-6 text-left
+                    border-2 border-transparent
+                    hover:border-purple-500
+                    hover:shadow-lg
+                    transition">
+
+                    <div
+                        class="w-14 h-14 bg-purple-100
+                        rounded-2xl flex items-center
+                        justify-center text-3xl mb-4">
+
+                        👥
+
+                    </div>
+
+
+                    <h3
+                        class="text-xl font-bold
+                        text-slate-900">
+
+                        Gestão de administradores
+
+                    </h3>
+
+
+                    <p
+                        class="text-slate-500 mt-2">
+
+                        Cadastre novos usuários
+                        administrativos.
+
+                    </p>
+
+                </button>
+
+
+
+                <!-- CONSULTAR LIVROS -->
+
+                <button
+                    onclick="window.location.href='livros.html'"
+                    class="bg-white rounded-2xl shadow-md
+                    p-6 text-left
+                    border-2 border-transparent
+                    hover:border-green-500
+                    hover:shadow-lg
+                    transition">
+
+                    <div
+                        class="w-14 h-14 bg-green-100
+                        rounded-2xl flex items-center
+                        justify-center text-3xl mb-4">
+
+                        🔎
+
+                    </div>
+
+
+                    <h3
+                        class="text-xl font-bold
+                        text-slate-900">
+
+                        Consultar acervo
+
+                    </h3>
+
+
+                    <p
+                        class="text-slate-500 mt-2">
+
+                        Consulte os livros cadastrados
+                        na biblioteca.
+
+                    </p>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             VOLTAR PARA HOME PÚBLICA
+        ================================================== -->
+
+        <div class="text-center mt-8">
+
+            <button
+                onclick="window.location.href='home.html'"
+                class="bg-orange-300
+                hover:bg-orange-400
+                text-black font-bold
+                py-3 px-6 rounded-xl
+                border border-black
+                transition">
+
+                🏠 Voltar para Home
+
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         SAIR
+    ====================================================== -->
+
+    <footer class="text-center pb-10">
+
+        <button
+            onclick="sair()"
+            class="bg-red-500
+            hover:bg-red-600
+            text-white font-bold
+            py-3 px-8 rounded-xl
+            transition">
+
+            🚪 Sair da conta
+
+        </button>
+
+    </footer>
+
+
+
+    <script>
+
+        console.log("home_adm.html carregado");
+
+
+        // ==================================================
+        // VERIFICAR LOGIN
+        // ==================================================
+
+        const usuarioLogado =
+            localStorage.getItem("usuario");
+
+
+        if (!usuarioLogado) {
+
+            alert(
+                "Você precisa estar logado como administrador."
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        // ==================================================
+        // SAIR
+        // ==================================================
+
+        function sair() {
+
+            localStorage.removeItem("usuario");
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
