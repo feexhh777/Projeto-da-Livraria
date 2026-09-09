@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <script src="scripts/protecao_adm.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Empréstimos - LEArning</title>
+
+</head>
+
+
+<body
+    class="bg-slate-100
+    min-h-screen
+    font-sans"
+>
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header
+        class="bg-gradient-to-b
+        from-blue-700
+        to-blue-600
+        text-white
+        rounded-b-[40px]
+        p-6"
+    >
+
+        <h1 class="text-2xl font-bold">
+
+            📚 Empréstimos
+
+        </h1>
+
+
+        <p class="text-sm opacity-80">
+
+            Registre, localize e devolva livros
+
+        </p>
+
+    </header>
+
+
+
+    <main
+        class="max-w-4xl
+        mx-auto
+        p-5"
+    >
+
+
+        <!-- =================================================
+             NOVO EMPRÉSTIMO
+        ================================================== -->
+
+        <section
+            class="bg-white
+            rounded-2xl
+            shadow-md
+            p-6
+            mb-8"
+        >
+
+            <h2
+                class="text-2xl
+                font-bold
+                text-slate-900
+                mb-2"
+            >
+
+                Novo empréstimo
+
+            </h2>
+
+
+            <p class="text-slate-500 mb-6">
+
+                Informe os dados do aluno
+                e selecione o livro.
+
+            </p>
+
+
+
+            <form id="formEmprestimo">
+
+
+                <!-- NOME -->
+
+                <div class="mb-5">
+
+                    <label
+                        for="nomeAluno"
+                        class="block
+                        mb-2
+                        font-bold
+                        text-slate-900"
+                    >
+
+                        Nome do aluno
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nomeAluno"
+                        placeholder="Digite o nome completo"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        p-3
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                </div>
+
+
+
+                <!-- SALA -->
+
+                <div class="mb-5">
+
+                    <label
+                        for="sala"
+                        class="block
+                        mb-2
+                        font-bold
+                        text-slate-900"
+                    >
+
+                        Sala
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="sala"
+                        placeholder="Ex: 2B"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        p-3
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                </div>
+
+
+
+                <!-- ANO -->
+
+                <div class="mb-5">
+
+                    <label
+                        for="anoAluno"
+                        class="block
+                        mb-2
+                        font-bold
+                        text-slate-900"
+                    >
+
+                        Ano
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="anoAluno"
+                        placeholder="Ex: 2º ano"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        p-3
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                </div>
+
+
+
+                <!-- LIVRO -->
+
+                <div class="mb-7">
+
+                    <label
+                        for="livro"
+                        class="block
+                        mb-2
+                        font-bold
+                        text-slate-900"
+                    >
+
+                        Livro
+
+                    </label>
+
+
+                    <select
+                        id="livro"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        p-3
+                        bg-white
+                        focus:outline-none
+                        focus:border-blue-600"
+                    >
+
+                        <option value="">
+
+                            Carregando livros...
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    id="botaoEmprestimo"
+                    class="w-full
+                    bg-blue-600
+                    hover:bg-blue-700
+                    text-white
+                    font-bold
+                    py-3
+                    rounded-xl"
+                >
+
+                    Registrar empréstimo
+
+                </button>
+
+
+            </form>
+
+
+            <p
+                id="mensagemEmprestimo"
+                class="text-center
+                font-bold
+                mt-5"
+            >
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             EMPRÉSTIMOS ATUAIS
+        ================================================== -->
+
+        <section
+            class="bg-white
+            rounded-2xl
+            shadow-md
+            p-6"
+        >
+
+            <h2
+                class="text-2xl
+                font-bold
+                text-slate-900
+                mb-2"
+            >
+
+                🔎 Livros emprestados
+
+            </h2>
+
+
+            <p class="text-slate-500 mb-5">
+
+                Pesquise pelo nome do aluno ou pelo livro.
+
+            </p>
+
+
+
+            <!-- PESQUISA -->
+
+            <input
+                type="text"
+                id="pesquisaEmprestimo"
+                placeholder="Digite o nome do aluno ou livro..."
+                class="w-full
+                border
+                border-slate-300
+                rounded-xl
+                p-3
+                focus:outline-none
+                focus:border-blue-600"
+            >
+
+
+
+            <!-- LISTA -->
+
+            <div
+                id="listaEmprestimos"
+                class="mt-6"
+            >
+
+                <p
+                    class="text-center
+                    text-slate-500"
+                >
+
+                    Carregando empréstimos...
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         VOLTAR
+    ====================================================== -->
+
+    <div
+        class="text-center
+        pb-10"
+    >
+
+        <button
+            onclick="window.location.href='home.html'"
+            class="bg-orange-300
+            hover:bg-orange-400
+            text-black
+            font-bold
+            py-3
+            px-6
+            rounded-xl
+            border
+            border-black"
+        >
+
+            Voltar para Home
+
+        </button>
+
+    </div>
+
+    <script src="scripts/emprestimos.js"></script>
+
+</body>
+
+</html>

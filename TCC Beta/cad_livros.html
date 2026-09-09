@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="scripts/protecao_adm.js"></script>
+
+<title>Cadastro de Livros - LEArning</title>
+
+</head>
+
+
+<body class="bg-slate-100 min-h-screen p-6">
+
+
+<div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+
+
+<!-- =====================================================
+     TÍTULO
+====================================================== -->
+
+<h1 class="text-3xl font-bold text-slate-900 mb-2">
+
+    📚 Cadastro de Livros
+
+</h1>
+
+
+<p class="text-slate-500 mb-6">
+
+    Escolha como deseja cadastrar o livro.
+
+</p>
+
+
+
+<!-- =====================================================
+     BOTÕES DO TOPO
+====================================================== -->
+
+<div class="grid grid-cols-2 gap-3 mb-8">
+
+
+    <button
+        type="button"
+        id="botaoISBN"
+        onclick="mostrarISBN()"
+        class="bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:bg-blue-700 transition">
+
+        🔎 Cadastrar por ISBN
+
+    </button>
+
+
+    <button
+        type="button"
+        id="botaoManual"
+        onclick="mostrarManual()"
+        class="bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl hover:bg-slate-300 transition">
+
+        ✏️ Cadastro Manual
+
+    </button>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     CADASTRO POR ISBN
+====================================================== -->
+
+<section id="areaISBN">
+
+
+    <h2 class="text-2xl font-bold text-slate-900 mb-2">
+
+        🔎 Cadastrar por ISBN
+
+    </h2>
+
+
+    <p class="text-slate-500 mb-6">
+
+        Digite o ISBN para buscar automaticamente os dados
+        do livro.
+
+    </p>
+
+
+
+    <!-- ISBN -->
+
+    <div class="mb-5">
+
+        <label
+            for="isbnBusca"
+            class="block mb-2 text-lg font-bold text-slate-900">
+
+            ISBN
+
+        </label>
+
+
+        <input
+            type="text"
+            id="isbnBusca"
+            placeholder="Ex: 9788535914849"
+            class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+        >
+
+    </div>
+
+
+
+    <!-- BOTÃO BUSCAR -->
+
+    <button
+        type="button"
+        id="botaoBuscarISBN"
+        onclick="buscarISBN()"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition">
+
+        🔎 Buscar livro
+
+    </button>
+
+
+
+    <!-- MENSAGEM -->
+
+    <p
+        id="mensagemISBN"
+        class="text-center font-bold mt-5">
+    </p>
+
+
+
+    <!-- =================================================
+         RESULTADO DA BUSCA
+    ================================================== -->
+
+    <div
+        id="resultadoISBN"
+        class="hidden mt-6 border border-slate-200 rounded-xl p-5 bg-slate-50">
+
+
+        <h3 class="text-xl font-bold text-slate-900 mb-4">
+
+            📖 Livro encontrado
+
+        </h3>
+
+
+
+        <!-- TÍTULO -->
+
+        <div class="mb-3">
+
+            <strong>Título:</strong>
+
+            <span id="isbnTitulo">
+                -
+            </span>
+
+        </div>
+
+
+
+        <!-- AUTOR -->
+
+        <div class="mb-3">
+
+            <strong>Autor:</strong>
+
+            <span id="isbnAutor">
+                -
+            </span>
+
+        </div>
+
+
+
+        <!-- EDITORA -->
+
+        <div class="mb-3">
+
+            <strong>Editora:</strong>
+
+            <span id="isbnEditora">
+                -
+            </span>
+
+        </div>
+
+
+
+        <!-- ANO -->
+
+        <div class="mb-3">
+
+            <strong>Ano:</strong>
+
+            <span id="isbnAno">
+                -
+            </span>
+
+        </div>
+
+
+
+        <!-- GÊNERO -->
+
+        <div class="mb-3">
+
+            <strong>Gênero:</strong>
+
+            <span id="isbnGenero">
+                -
+            </span>
+
+        </div>
+
+
+
+        <!-- ISBN -->
+
+        <div class="mb-3">
+
+            <strong>ISBN:</strong>
+
+            <span id="isbnNumero">
+                -
+            </span>
+
+        </div>
+
+
+
+        <!-- QUANTIDADE -->
+
+        <div class="mt-5">
+
+            <label
+                for="quantidadeISBN"
+                class="block mb-2 font-bold text-slate-900">
+
+                Quantidade de exemplares
+
+            </label>
+
+
+            <input
+                type="number"
+                id="quantidadeISBN"
+                min="1"
+                value="1"
+                class="w-full border border-slate-300 rounded-xl p-3"
+            >
+
+        </div>
+
+
+
+        <!-- CONFIRMAR -->
+
+        <button
+            type="button"
+            id="botaoCadastrarISBN"
+            onclick="cadastrarPorISBN()"
+            class="w-full mt-5 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl">
+
+            ✓ Confirmar cadastro
+
+        </button>
+
+
+
+        <!-- MENSAGEM -->
+
+        <p
+            id="mensagemCadastroISBN"
+            class="text-center font-bold mt-4">
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CADASTRO MANUAL
+====================================================== -->
+
+<section id="areaManual" class="hidden">
+
+
+    <h2 class="text-2xl font-bold text-slate-900 mb-2">
+
+        ✏️ Cadastro Manual
+
+    </h2>
+
+
+    <p class="text-slate-500 mb-6">
+
+        Preencha manualmente os dados do livro.
+
+    </p>
+
+
+
+    <form id="formlivro">
+
+
+        <!-- TÍTULO -->
+
+        <div class="mb-5">
+
+            <label
+                for="titulo"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                Título do livro
+
+            </label>
+
+
+            <input
+                type="text"
+                id="titulo"
+                placeholder="Digite o título do livro"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- AUTOR -->
+
+        <div class="mb-5">
+
+            <label
+                for="autor"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                Autor
+
+            </label>
+
+
+            <input
+                type="text"
+                id="autor"
+                placeholder="Digite o autor do livro"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- EDITORA -->
+
+        <div class="mb-5">
+
+            <label
+                for="editora"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                Editora
+
+            </label>
+
+
+            <input
+                type="text"
+                id="editora"
+                placeholder="Digite a editora"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- ISBN -->
+
+        <div class="mb-5">
+
+            <label
+                for="isbn"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                ISBN
+
+            </label>
+
+
+            <input
+                type="text"
+                id="isbn"
+                placeholder="Digite o ISBN"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- GÊNERO -->
+
+        <div class="mb-5">
+
+            <label
+                for="genero"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                Gênero
+
+            </label>
+
+
+            <input
+                type="text"
+                id="genero"
+                placeholder="Digite o gênero"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- ANO -->
+
+        <div class="mb-5">
+
+            <label
+                for="ano"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                Ano
+
+            </label>
+
+
+            <input
+                type="number"
+                id="ano"
+                placeholder="Ex: 2020"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- QUANTIDADE -->
+
+        <div class="mb-7">
+
+            <label
+                for="quantidade"
+                class="block mb-2 text-lg font-bold text-slate-900">
+
+                Quantidade de exemplares
+
+            </label>
+
+
+            <input
+                type="number"
+                id="quantidade"
+                min="1"
+                value="1"
+                class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:border-blue-600"
+            >
+
+        </div>
+
+
+
+        <!-- BOTÃO -->
+
+        <button
+            type="submit"
+            id="botaoCadastrar"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition">
+
+            Cadastrar livro
+
+        </button>
+
+
+    </form>
+
+
+
+    <!-- MENSAGEM MANUAL -->
+
+    <p
+        id="mensagem"
+        class="text-center font-bold mt-5">
+    </p>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     VOLTAR
+====================================================== -->
+
+<button
+    type="button"
+    onclick="window.location.href='home_adm.html'"
+    class="w-full mt-8 bg-orange-300 hover:bg-orange-400 text-black font-bold py-3 rounded-xl border border-black">
+
+    ← Voltar para Home
+
+</button>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="cad_livros.js"></script>
+
+
+</body>
+
+</html>
