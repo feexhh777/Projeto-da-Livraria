@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <script src="../scripts/protecao_adm.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Cadastro de Gestão - LEArning</title>
+
+</head>
+
+
+<body
+    class="bg-purple-300
+    min-h-screen
+    font-sans
+    text-slate-800"
+>
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header
+        class="bg-gradient-to-b
+        from-purple-700
+        to-purple-500
+        text-white
+        rounded-b-[35px]
+        shadow-lg
+        px-6
+        py-8
+        mb-8"
+    >
+
+        <div
+            class="max-w-3xl
+            mx-auto"
+        >
+
+            <div
+                class="flex
+                items-center
+                gap-4"
+            >
+
+                <div
+                    class="w-14
+                    h-14
+                    bg-white/15
+                    backdrop-blur-sm
+                    rounded-2xl
+                    flex
+                    items-center
+                    justify-center
+                    text-3xl
+                    shadow-inner"
+                >
+
+                    👤
+
+                </div>
+
+
+                <div>
+
+                    <h1
+                        class="text-3xl
+                        md:text-4xl
+                        font-extrabold
+                        tracking-tight"
+                    >
+
+                        Cadastro de Gestão
+
+                    </h1>
+
+
+                    <p
+                        class="text-purple-100
+                        mt-1"
+                    >
+
+                        Cadastre um novo usuário administrativo.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <main
+        class="max-w-3xl
+        mx-auto
+        px-5
+        pb-12"
+    >
+
+
+        <!-- =================================================
+             CARD DE CADASTRO
+        ================================================== -->
+
+        <section
+            class="bg-slate-100
+            rounded-3xl
+            shadow-md
+            border
+            border-slate-200
+            overflow-hidden"
+        >
+
+
+            <!-- TÍTULO -->
+
+            <div
+                class="px-6
+                md:px-8
+                pt-7
+                pb-5
+                border-b
+                border-slate-100"
+            >
+
+                <div
+                    class="flex
+                    items-center
+                    gap-3"
+                >
+
+                    <div
+                        class="w-11
+                        h-11
+                        rounded-xl
+                        bg-purple-100
+                        text-purple-700
+                        flex
+                        items-center
+                        justify-center
+                        text-xl"
+                    >
+
+                        📝
+
+                    </div>
+
+
+                    <div>
+
+                        <h2
+                            class="text-2xl
+                            font-bold
+                            text-slate-900"
+                        >
+
+                            Novo usuário
+
+                        </h2>
+
+
+                        <p
+                            class="text-sm
+                            text-slate-500
+                            mt-1"
+                        >
+
+                            Preencha os dados para cadastrar um administrador.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FORMULÁRIO
+            ================================================== -->
+
+            <form
+                id="formcad"
+                class="p-6
+                md:p-8"
+            >
+
+
+                <!-- NOME -->
+
+                <div
+                    class="mb-5"
+                >
+
+                    <label
+                        for="nome"
+                        class="block
+                        mb-2
+                        text-sm
+                        font-bold
+                        text-slate-700"
+                    >
+
+                        Nome completo
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite o nome completo"
+                        autocomplete="name"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        px-4
+                        py-3
+                        bg-slate-50
+                        transition
+                        duration-200
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-purple-500/30
+                        focus:border-purple-500
+                        focus:bg-white"
+                    >
+
+                </div>
+
+
+
+                <!-- CPF -->
+
+                <div
+                    class="mb-5"
+                >
+
+                    <label
+                        for="cpf"
+                        class="block
+                        mb-2
+                        text-sm
+                        font-bold
+                        text-slate-700"
+                    >
+
+                        CPF
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="cpf"
+                        placeholder="000.000.000-00"
+                        maxlength="14"
+                        inputmode="numeric"
+                        autocomplete="off"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        px-4
+                        py-3
+                        bg-slate-50
+                        transition
+                        duration-200
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-purple-500/30
+                        focus:border-purple-500
+                        focus:bg-white"
+                    >
+
+
+                    <p
+                        class="text-xs
+                        text-slate-400
+                        mt-2"
+                    >
+
+                        Digite os 11 números do CPF.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- SENHA -->
+
+                <div
+                    class="mb-7"
+                >
+
+                    <label
+                        for="senha"
+                        class="block
+                        mb-2
+                        text-sm
+                        font-bold
+                        text-slate-700"
+                    >
+
+                        Senha
+
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Digite uma senha"
+                        autocomplete="new-password"
+                        class="w-full
+                        border
+                        border-slate-300
+                        rounded-xl
+                        px-4
+                        py-3
+                        bg-slate-50
+                        transition
+                        duration-200
+                        focus:outline-none
+                        focus:ring-2
+                        focus:ring-purple-500/30
+                        focus:border-purple-500
+                        focus:bg-white"
+                    >
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    id="btnCadastrar"
+                    class="w-full
+                    bg-gradient-to-r
+                    from-purple-700
+                    to-purple-600
+                    hover:from-purple-800
+                    hover:to-purple-700
+                    active:scale-[0.99]
+                    text-white
+                    font-bold
+                    py-3.5
+                    rounded-xl
+                    shadow-md
+                    hover:shadow-lg
+                    transition
+                    duration-200"
+                >
+
+                    👤 Cadastrar usuário
+
+                </button>
+
+
+
+                <!-- MENSAGEM -->
+
+                <div
+                    class="mt-5
+                    min-h-[24px]"
+                >
+
+                    <h3
+                        id="mensagem"
+                        class="text-center
+                        font-bold"
+                    >
+                    </h3>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         VOLTAR
+    ====================================================== -->
+
+    <div
+        class="text-center
+        pb-10
+        px-5"
+    >
+
+        <button
+            onclick="window.location.href='home_adm.html'"
+            class="inline-flex
+            items-center
+            justify-center
+            gap-2
+            bg-purple-500
+            hover:bg-purple-700
+            text-black
+            font-bold
+            py-3
+            px-7
+            rounded-xl
+            border
+            border-slate-300
+            shadow-sm
+            hover:shadow-md
+            transition
+            duration-200"
+        >
+
+            ← Voltar para Home
+
+        </button>
+
+    </div>
+
+
+
+    <script src="../scripts/cad_gestao.js"></script>
+
+</body>
+
+</html>

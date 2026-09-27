@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>LEArning</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+
+<body class="bg-slate-50 min-h-screen font-sans pb-24">
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header
+        class="bg-gradient-to-b from-blue-700 to-blue-600
+        rounded-b-[40px] p-6 text-white shadow-lg"
+    >
+
+        <div class="flex justify-between items-center">
+
+            <div>
+
+                <h1 class="text-xl font-bold">
+                    Olá, Leitor! 👋
+                </h1>
+
+                <p class="text-sm opacity-80">
+                    Bem-vindo à sua Biblioteca Virtual
+                </p>
+
+            </div>
+
+
+            <div
+                class="w-11 h-11
+                bg-white/20
+                rounded-full
+                flex items-center justify-center
+                text-xl"
+            >
+
+                🔔
+
+            </div>
+
+        </div>
+
+
+        <!-- PESQUISA -->
+
+        <div
+            class="mt-6
+            bg-white
+            rounded-full
+            p-3
+            flex items-center
+            text-gray-400
+            shadow-lg"
+        >
+
+            <span class="text-lg">
+                🔍
+            </span>
+
+
+            <input
+                id="pesquisaLivro"
+                type="text"
+                class="ml-3 outline-none w-full text-slate-800"
+                placeholder="Buscar livros, autores ou categorias..."
+            >
+
+        </div>
+
+    </header>
+
+
+
+    <main class="p-5 max-w-5xl mx-auto">
+
+
+        <!-- =================================================
+             DESTAQUE
+        ================================================== -->
+
+        <section
+            class="bg-gradient-to-r
+            from-slate-900
+            to-blue-900
+            rounded-3xl
+            p-6
+            text-white
+            mt-4
+            shadow-xl
+            overflow-hidden"
+        >
+
+            <div class="flex justify-between items-center gap-5">
+
+                <div class="flex-1">
+
+                    <p class="text-sm text-blue-300 font-semibold">
+                        📚 Em destaque
+                    </p>
+
+
+                    <h2
+                        id="livroDestaque"
+                        class="text-3xl font-bold mt-1"
+                    >
+
+                        1984
+
+                    </h2>
+
+
+                    <p
+                        id="autorDestaque"
+                        class="text-sm text-slate-300 mt-1"
+                    >
+
+                        George Orwell
+
+                    </p>
+
+
+                    <button
+                        onclick="window.location.href='livros.html'"
+                        class="mt-5
+                        bg-white
+                        text-blue-700
+                        px-5 py-2
+                        rounded-xl
+                        font-bold
+                        hover:bg-blue-50
+                        transition"
+                    >
+
+                        VER LIVROS
+
+                    </button>
+
+                </div>
+
+
+                <!-- CAPA -->
+
+                <div
+                    class="w-24 h-36
+                    bg-gradient-to-br
+                    from-red-700
+                    to-red-950
+                    rounded-lg
+                    flex flex-col
+                    items-center
+                    justify-center
+                    shadow-xl
+                    border
+                    border-white/20
+                    flex-shrink-0"
+                >
+
+                    <span class="text-white text-2xl font-black">
+                        1984
+                    </span>
+
+                    <span class="text-[9px] text-red-200 mt-1">
+                        GEORGE ORWELL
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CATEGORIAS
+        ================================================== -->
+
+        <div class="flex justify-between items-center mt-8">
+
+            <h2 class="font-bold text-lg text-slate-900">
+                Categorias
+            </h2>
+
+
+            <button
+                onclick="window.location.href='livros.html'"
+                class="text-blue-600 text-sm font-semibold"
+            >
+
+                Ver todas →
+
+            </button>
+
+        </div>
+
+
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mt-4">
+
+
+            <button
+                onclick="buscarCategoria('Romance')"
+                class="bg-blue-50
+                hover:bg-blue-100
+                rounded-2xl
+                p-4
+                text-center
+                transition
+                shadow-sm"
+            >
+
+                <div class="text-2xl">
+                    💙
+                </div>
+
+                <p class="text-xs font-semibold mt-1">
+                    Romance
+                </p>
+
+            </button>
+
+
+
+            <button
+                onclick="buscarCategoria('História')"
+                class="bg-green-50
+                hover:bg-green-100
+                rounded-2xl
+                p-4
+                text-center
+                transition
+                shadow-sm"
+            >
+
+                <div class="text-2xl">
+                    🏛️
+                </div>
+
+                <p class="text-xs font-semibold mt-1">
+                    História
+                </p>
+
+            </button>
+
+
+
+            <button
+                onclick="buscarCategoria('Desenvolvimento')"
+                class="bg-purple-50
+                hover:bg-purple-100
+                rounded-2xl
+                p-4
+                text-center
+                transition
+                shadow-sm"
+            >
+
+                <div class="text-2xl">
+                    💡
+                </div>
+
+                <p class="text-xs font-semibold mt-1">
+                    Desenvolvimento
+                </p>
+
+            </button>
+
+
+
+            <button
+                onclick="buscarCategoria('Fantasia')"
+                class="bg-pink-50 hover:bg-pink-100 rounded-2xl p-4 text-center transition shadow-sm"
+            >
+                <div class="text-2xl">🧙</div>
+                <p class="text-xs font-semibold mt-1">Fantasia</p>
+            </button>
+
+            <button
+                onclick="buscarCategoria('Ficção')"
+                class="bg-indigo-50 hover:bg-indigo-100 rounded-2xl p-4 text-center transition shadow-sm"
+            >
+                <div class="text-2xl">🚀</div>
+                <p class="text-xs font-semibold mt-1">Ficção</p>
+            </button>
+
+            <button
+                onclick="buscarCategoria('Mistério')"
+                class="bg-orange-50 hover:bg-orange-100 rounded-2xl p-4 text-center transition shadow-sm"
+            >
+                <div class="text-2xl">🔎</div>
+                <p class="text-xs font-semibold mt-1">Mistério</p>
+            </button>
+
+            <button
+                onclick="buscarCategoria('Biografia')"
+                class="bg-teal-50 hover:bg-teal-100 rounded-2xl p-4 text-center transition shadow-sm"
+            >
+                <div class="text-2xl">👤</div>
+                <p class="text-xs font-semibold mt-1">Biografia</p>
+            </button>
+
+
+            <button
+                onclick="buscarCategoria('Natureza')"
+                class="bg-yellow-50
+                hover:bg-yellow-100
+                rounded-2xl
+                p-4
+                text-center
+                transition
+                shadow-sm"
+            >
+
+                <div class="text-2xl">
+                    🌳
+                </div>
+
+                <p class="text-xs font-semibold mt-1">
+                    Natureza
+                </p>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LIVROS DISPONÍVEIS
+        ================================================== -->
+
+        <div class="flex justify-between items-center mt-8">
+
+            <div>
+
+                <h2 class="font-bold text-lg text-slate-900">
+                    Livros disponíveis
+                </h2>
+
+                <p class="text-xs text-slate-500 mt-1">
+                    Confira alguns livros da biblioteca
+                </p>
+
+            </div>
+
+
+            <button
+                onclick="window.location.href='livros.html'"
+                class="text-blue-600 text-sm font-semibold"
+            >
+
+                Ver todos →
+
+            </button>
+
+        </div>
+
+
+
+        <!-- LISTA DE LIVROS -->
+
+        <div
+            id="listaLivros"
+            class="grid grid-cols-1 sm:grid-cols-2
+            lg:grid-cols-3 gap-4 mt-4"
+        >
+
+            <div
+                class="col-span-full bg-white rounded-2xl shadow-sm p-6 text-center text-slate-500"
+            >
+                Carregando livros...
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             MENSAGEM DE PESQUISA
+        ================================================== -->
+
+        <div
+            id="mensagemPesquisa"
+            class="hidden
+            bg-blue-50
+            border border-blue-100
+            text-blue-700
+            rounded-xl
+            p-4
+            mt-5
+            text-center
+            font-semibold"
+        >
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         MENU INFERIOR
+    ====================================================== -->
+
+    <nav
+        class="fixed
+        bottom-0
+        left-0
+        right-0
+        bg-white
+        border-t
+        border-slate-200
+        p-3
+        flex
+        justify-around
+        items-center
+        shadow-[0_-5px_20px_rgba(0,0,0,0.05)]"
+    >
+    
+        <!-- LIVROS -->
+
+        <button
+            onclick="window.location.href='livros.html'"
+            class="text-slate-600
+            hover:text-blue-600
+            text-center"
+        >
+
+            <div class="text-xl">
+                📚
+            </div>
+
+            <small>
+                Livros
+            </small>
+
+        </button>
+
+        <!-- SOBRE -->
+
+        <button
+            onclick="window.location.href='sobre_nos.html'"
+            class="text-slate-600
+            hover:text-blue-600
+            text-center"
+        >
+
+            <div class="text-xl">
+                👥
+            </div>
+
+            <small>
+                Sobre nós
+            </small>
+
+        </button>
+
+
+
+        <!-- PERFIL -->
+
+        <button
+            onclick="window.location.href='login.html'"
+            class="text-slate-600
+            hover:text-purple-600
+            text-center"
+        >
+
+            <div class="text-xl">
+                👤
+            </div>
+
+            <small>
+                Admin
+            </small>
+
+        </button>
+
+    </nav>
+    <script src="../scripts/home.js"></script>
+</body>
+
+</html>
+
