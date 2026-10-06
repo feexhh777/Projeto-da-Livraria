@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Livros - LEArning</title>
+
+</head>
+
+
+<body class="bg-purple-100 min-h-screen font-sans">
+
+
+    <!-- CABEÇALHO -->
+
+    <header class="bg-gradient-to-b from-purple-700 to-purple-400
+    text-white rounded-b-[35px] p-6">
+
+        <h1 class="text-2xl font-bold">
+            📚 Biblioteca
+        </h1>
+
+        <p class="text-sm opacity-80">
+            Consulte nosso acervo
+        </p>
+
+
+        <!-- PESQUISA -->
+
+        <div class="mt-6 bg-white rounded-full p-3
+        flex items-center shadow">
+
+            <span class="text-gray-400">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="pesquisa"
+                placeholder="Buscar livro, autor ou gênero..."
+                class="ml-3 outline-none w-full text-black"
+            >
+
+        </div>
+
+    </header>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="p-5 max-w-6xl mx-auto">
+
+
+        <div class="flex justify-between items-center mb-5">
+
+            <h2 class="text-xl font-bold text-slate-900">
+                Livros
+            </h2>
+
+            <span
+                id="contador"
+                class="text-sm text-slate-500">
+            </span>
+
+        </div>
+
+
+        <!-- MENSAGEM -->
+
+        <div
+            id="mensagem"
+            class="text-center text-slate-500 py-10">
+
+            Carregando livros...
+
+        </div>
+
+
+        <!-- LISTA -->
+
+        <div
+            id="listaLivros"
+            class="grid grid-cols-1 sm:grid-cols-2
+            lg:grid-cols-3 gap-5">
+        </div>
+
+
+    </main>
+
+
+
+    <!-- VOLTAR -->
+
+    <div class="text-center pb-10">
+
+        <button
+            onclick="window.location.href='./home.html'"
+            class="bg-purple-300 hover:bg-purple-400
+            text-black font-bold py-3 px-6 rounded-xl
+            borderless shadow-md transition duration-200">
+
+            Voltar para Home
+
+        </button>
+
+    </div>
+
+    <script src="../scripts/livros.js"></script>
+
+</body>
+
+</html>
