@@ -1,9 +1,7 @@
 Lider:Fernando
-Designer/layout:Raul
 Back-end:Vitor F.
 Front-end:Fernando
 Banco de dados:Vitória
-inteligencia artificial: Mabelli
 
 Projeto: Livraria Online
 Grupo: Os git-hubs
