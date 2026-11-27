@@ -3,7 +3,7 @@ Back-end:Vitor F.
 Front-end:Fernando
 Banco de dados:Vitória
 
-Projeto: Livraria Online
+Projeto: Learning
 Grupo: Os git-hubs
  
 Objetivo do projeto:
